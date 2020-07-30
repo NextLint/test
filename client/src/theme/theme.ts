@@ -30,5 +30,16 @@ export const theme = createMuiTheme({
         fontSize: 'none',
       },
     },
+    MuiButtonBase: {
+      root: {
+        border: '3px #e1e7eb dashed',
+      },
+    },
+    MuiSvgIcon: {
+      // hack
+      root: {
+        fontSize: 'none',
+      },
+    },
   },
 });
