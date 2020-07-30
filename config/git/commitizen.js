@@ -7,10 +7,11 @@ module.exports = {
     { value: 'perf', name: 'perf:      Изменения направленные на улучшение производительности' },
     { value: 'test', name: 'test:      Добавление тестов' },
     { value: 'build', name: 'build:     Сборка проекта или изменения внешних зависимостей' },
+    { value: 'config', name: 'config:     Изменение параметров конфигурации проекта' },
   ],
 
   // TODO: Сделать область видимости для backend
-  scopes: [{ name: 'components' }, { name: 'redux' }],
+  scopes: [{ name: 'components' }, { name: 'redux' }, { name: 'theme' }],
 
   messages: {
     type: 'Какие изменения вы вносите?',
