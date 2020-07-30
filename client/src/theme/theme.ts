@@ -41,5 +41,24 @@ export const theme = createMuiTheme({
         fontSize: 'none',
       },
     },
+    MuiDialogTitle: {
+      root: {
+        padding: 'none',
+      },
+    },
+    MuiDialogContent: {
+      root: {
+        padding: 'none',
+      },
+    },
+    MuiDialogActions: {
+      root: {
+        padding: 'none',
+      },
+    },
+  },
+  palette: {
+    primary: { main: '#e1e7eb' },
+    secondary: { main: '#00A6B4' },
   },
 });
