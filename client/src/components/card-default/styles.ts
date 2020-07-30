@@ -5,6 +5,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     height: '122px',
     minWidth: '410px',
+    width: '410px',
   },
   number: {
     backgroundColor: '#f8f9fd',
