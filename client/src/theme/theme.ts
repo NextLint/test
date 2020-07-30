@@ -7,6 +7,11 @@ export const theme = createMuiTheme({
         boxShadow: '0px 0px 12px 0px rgba(50, 50, 50, 0.13)',
       },
     },
+    MuiCardHeader: {
+      root: {
+        padding: '22px',
+      },
+    },
     MuiAvatar: {
       root: {
         height: '56px',
