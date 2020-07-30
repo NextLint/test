@@ -1,8 +1,14 @@
 import React from 'react';
 import './App.css';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './theme/theme';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="App"></div>
+    </ThemeProvider>
+  );
 }
 
 export default App;
