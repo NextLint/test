@@ -1,22 +1,23 @@
 .App {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100%;
   background-color: #f8f9fd;
-  overflow: scroll;
 }
 
 /*#f8f9fd*/
 
 .content {
   flex-grow: 1;
-  margin: 70px 66px;
-  margin-bottom: 0px;
+  padding: 70px 66px;
+  padding-bottom: 0px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .content > div {
+  margin-right: 40px;
+  margin-bottom: 40px;
+}
+.content > button {
   margin-right: 40px;
   margin-bottom: 40px;
 }
