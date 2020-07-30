@@ -3,11 +3,15 @@ import { useStyles } from './styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import AddIcon from '@material-ui/icons/Add';
 
-const ButtonAdd: React.FC = () => {
+interface IButtonAddProps {
+  handler: () => void;
+}
+
+const ButtonAdd: React.FC<IButtonAddProps> = props => {
   const classes = useStyles();
 
   return (
-    <ButtonBase className={classes.root}>
+    <ButtonBase className={classes.root} onClick={props.handler}>
       <AddIcon className={classes.icon} />
     </ButtonBase>
   );

@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 interface IFormProps {
   open: boolean;
+  handler: () => void;
 }
 
 const Form: React.FC<IFormProps> = props => {
@@ -18,7 +19,7 @@ const Form: React.FC<IFormProps> = props => {
     <div>
       <Dialog
         open={props.open}
-        // onClose={handleClose}
+        onClose={props.handler}
         aria-labelledby="form-dialog-title"
         classes={{
           paper: classes.root,
