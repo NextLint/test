@@ -1,0 +1,30 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "description": "Chat application",
+  "license": "ISC",
+  "main": "app.js",
+  "author": "Ruslan Zolotaryov <zolotaryov.rusik@yandex.ru>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g './config/git/commitlint.js'"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "cz-customizable": "^6.2.1",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5"
+  }
+}
