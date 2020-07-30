@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme/theme';
-import Form from './components/form-create-user';
+import UserCard from './components/card-default';
+import ButtonAdd from './components/button-default';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Form open={true} />
+        <div className="content"></div>
       </div>
     </ThemeProvider>
   );

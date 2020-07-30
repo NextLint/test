@@ -1,8 +1,22 @@
 .App {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f8f9fd;
+  overflow: scroll;
+}
+
+/*#f8f9fd*/
+
+.content {
+  flex-grow: 1;
+  margin: 70px 66px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content > div {
+  margin-right: 40px;
+  margin-bottom: 40px;
 }
