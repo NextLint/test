@@ -21,5 +21,14 @@ export const theme = createMuiTheme({
         backgroundColor: '00A6B4',
       },
     },
+    MuiTypography: {
+      colorTextSecondary: {
+        color: '#B9C6CF',
+      },
+      // hack
+      body2: {
+        fontSize: 'none',
+      },
+    },
   },
 });
