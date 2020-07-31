@@ -6,7 +6,7 @@
   "main": "app.js",
   "author": "Ruslan Zolotaryov <zolotaryov.rusik@yandex.ru>",
   "scripts": {
-    "start": "node app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "server": "nodemon app.js",
     "client:install": "npm install --prefix client",
     "client:build": "npm run build --prefix client",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
+    "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "cz-customizable": "^6.2.1",
     "husky": "^4.2.5",
