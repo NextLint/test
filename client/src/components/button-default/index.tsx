@@ -1,20 +1,23 @@
 import React from 'react';
-import { useStyles } from './styles';
+import { styles } from './styles';
+import clsx from 'clsx';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import AddIcon from '@material-ui/icons/Add';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
-interface IButtonAddProps {
+interface IButtonAddProps extends WithStyles<typeof styles> {
   handler: () => void;
+  className?: string;
 }
 
 const ButtonAdd: React.FC<IButtonAddProps> = props => {
-  const classes = useStyles();
+  const { classes, className, handler } = props;
 
   return (
-    <ButtonBase className={classes.root} onClick={props.handler}>
-      <AddIcon className={classes.icon} />
+    <ButtonBase className={clsx(classes.root, className)} onClick={handler}>
+      <AddIcon className={clsx(classes.icon, className)} />
     </ButtonBase>
   );
 };
 
-export default ButtonAdd;
+export default withStyles(styles)(ButtonAdd);
