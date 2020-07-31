@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './styles.module.css';
 import { IUser } from '../../types';
 import UserCard from '../card-default';
-import Form from '../form-create-user';
+import FormContainer from '../form-create-user';
 
 interface IContentListProps {
   users: Array<IUser>;
@@ -12,7 +12,7 @@ interface IContentListProps {
 const ContentList: React.FC<IContentListProps> = props => {
   useEffect(() => {
     props.getUsers();
-  });
+  }, []);
 
   const users = props.users.map(user => (
     <UserCard
@@ -27,7 +27,7 @@ const ContentList: React.FC<IContentListProps> = props => {
   return (
     <div className={styles.content}>
       {users}
-      <Form />
+      <FormContainer />
     </div>
   );
 };
