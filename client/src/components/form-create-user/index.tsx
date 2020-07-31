@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStyles } from './styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,20 +6,22 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ButtonAdd from '../button-default';
 
-interface IFormProps {
-  open: boolean;
-  handler: () => void;
-}
-
-const Form: React.FC<IFormProps> = props => {
+const Form: React.FC = () => {
   const classes = useStyles();
+  const [openForm, setOpenForm] = useState(false);
 
+  const handleFormOpen = () => setOpenForm(true);
+  const handleFormClose = () => setOpenForm(false);
+
+  console.log('form');
   return (
     <div>
+      <ButtonAdd handler={handleFormOpen} />
       <Dialog
-        open={props.open}
-        onClose={props.handler}
+        open={openForm}
+        onClose={handleFormClose}
         aria-labelledby="form-dialog-title"
         classes={{
           paper: classes.root,
