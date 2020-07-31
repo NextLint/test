@@ -10,7 +10,13 @@ interface IContentListProps {
 
 const ContentList: React.FC<IContentListProps> = props => {
   const users = props.users.map(user => (
-    <UserCard key={user.id} id={user.id} name={user.name} email={user.email} />
+    <UserCard
+      key={user.id}
+      id={user.id}
+      firstName={user.firstName}
+      lastName={user.lastName}
+      email={user.email}
+    />
   ));
 
   return (

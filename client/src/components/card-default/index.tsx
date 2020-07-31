@@ -6,10 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 
 interface IUserCardProps {
   id: number;
-  name: {
-    firstName: string;
-    lastName: string;
-  };
+  firstName: string;
+  lastName: string;
   email: string;
 }
 

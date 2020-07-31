@@ -4,18 +4,14 @@ const initialState: IUsersReducer = {
   users: [
     {
       id: 1,
-      name: {
-        firstName: 'Елена',
-        lastName: 'Медведева',
-      },
+      firstName: 'Елена',
+      lastName: 'Медведева',
       email: 'elena.medvedeva@gmail.com',
     },
     {
       id: 2,
-      name: {
-        firstName: 'Руслан',
-        lastName: 'Золотарёв',
-      },
+      firstName: 'Руслан',
+      lastName: 'Золотарёв',
       email: 'zolotaryov.rusik@yandex.ru',
     },
   ],
