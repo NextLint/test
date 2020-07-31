@@ -4,6 +4,12 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+app.use(express.json({ extended: true }));
+
+let userRoutes = require('./routes/users.routes');
+
+app.use('/api/users', userRoutes);
+
 const PORT = config.get('port') || 5000;
 
 async function start() {
