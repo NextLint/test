@@ -24,7 +24,7 @@ const UserCard: React.FC<IUserCardProps> = props => {
             РЗ
           </Avatar>
         }
-        title={Object.values(props.name).join(' ')}
+        title={`${props.firstName} ${props.lastName}`}
         subheader={props.email}
         classes={{
           subheader: classes.subheader,
