@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ContentList from './content-list';
 
-const mapStateToProps = (state: any, props: any) => ({
+const mapStateToProps = (state: any) => ({
   users: state.users.users,
 });
 
