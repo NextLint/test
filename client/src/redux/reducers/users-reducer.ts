@@ -1,24 +1,15 @@
 import { IUsersReducer } from '../../types';
 
 const initialState: IUsersReducer = {
-  users: [
-    {
-      id: 1,
-      firstName: 'Елена',
-      lastName: 'Медведева',
-      email: 'elena.medvedeva@gmail.com',
-    },
-    {
-      id: 2,
-      firstName: 'Руслан',
-      lastName: 'Золотарёв',
-      email: 'zolotaryov.rusik@yandex.ru',
-    },
-  ],
+  users: [],
 };
 
 const users = (state = initialState, action: any): IUsersReducer => {
   switch (action.type) {
+    case 'SET-USERS':
+      return Object.assign({}, state, {
+        users: action.users,
+      });
     default:
       return state;
   }
