@@ -6,6 +6,8 @@
   "main": "app.js",
   "author": "Ruslan Zolotaryov <zolotaryov.rusik@yandex.ru>",
   "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
@@ -29,6 +31,7 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
+    "config": "^3.3.1",
     "express": "^4.17.1",
     "mongoose": "^5.9.26"
   }
