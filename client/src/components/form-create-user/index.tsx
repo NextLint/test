@@ -1,27 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { styles } from './styles';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import MuiTextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ButtonAdd from '../button-default';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
+import { Formik, Form, Field } from 'formik';
+import { fieldToTextField, TextFieldProps } from 'formik-material-ui';
+
+interface Values {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 interface IFormProps extends WithStyles<typeof styles> {
   className?: string;
 }
 
-const Form: React.FC<IFormProps> = props => {
+const Input: React.FC<TextFieldProps> = props => {
+  const {
+    form: { setFieldValue },
+    field: { name },
+  } = props;
+  const onChange = useCallback(
+    event => {
+      const { value } = event.target;
+      setFieldValue(name, value);
+    },
+    [setFieldValue, name],
+  );
+  return <MuiTextField {...fieldToTextField(props)} onChange={onChange} />;
+};
+
+const FormAdd: React.FC<IFormProps> = props => {
   const [openForm, setOpenForm] = useState(false);
   const { classes, className } = props;
 
   const handleFormOpen = () => setOpenForm(true);
   const handleFormClose = () => setOpenForm(false);
 
-  console.log('form');
   return (
     <div>
       <ButtonAdd handler={handleFormOpen} />
@@ -36,46 +58,82 @@ const Form: React.FC<IFormProps> = props => {
         <DialogTitle disableTypography={true} className={clsx(classes.title, className)}>
           Создание пользователя
         </DialogTitle>
-        <DialogContent className={clsx(classes.content, className)}>
-          <TextField
-            autoFocus
-            margin="normal"
-            id="first-name"
-            label="Имя"
-            type="text"
-            fullWidth
-            variant="outlined"
-            color="secondary"
-          />
-          <TextField
-            autoFocus
-            margin="normal"
-            id="last-name"
-            label="Фамилия"
-            type="text"
-            fullWidth
-            variant="outlined"
-            color="secondary"
-          />
-          <TextField
-            autoFocus
-            margin="normal"
-            id="email"
-            label="E-mail"
-            type="email"
-            fullWidth
-            variant="outlined"
-            color="secondary"
-          />
-        </DialogContent>
-        <DialogActions className={clsx(classes.actions, className)}>
-          <Button fullWidth classes={{ root: classes.button }} onClick={handleFormClose}>
-            Создать
-          </Button>
-        </DialogActions>
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            email: '',
+          }}
+          validate={values => {
+            const errors: Partial<Values> = {};
+            if (!values.email) {
+              errors.email = 'Required';
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+              errors.email = 'Invalid email address';
+            }
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              setSubmitting(false);
+              handleFormClose();
+              alert(JSON.stringify(values, null, 2));
+            }, 500);
+          }}
+        >
+          {({ submitForm, isSubmitting }) => (
+            <Form>
+              <DialogContent className={clsx(classes.content, className)}>
+                <Field
+                  component={Input}
+                  name="firstName"
+                  type="text"
+                  label="Имя"
+                  autoFocus
+                  margin="normal"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                />
+                <Field
+                  component={Input}
+                  name="lastName"
+                  type="text"
+                  label="Фамилия"
+                  autoFocus
+                  margin="normal"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                />
+                <Field
+                  component={Input}
+                  name="email"
+                  type="email"
+                  label="E-mail"
+                  autoFocus
+                  margin="normal"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                />
+              </DialogContent>
+              <DialogActions classes={{ root: classes.actions }}>
+                <Button
+                  fullWidth
+                  classes={{ root: classes.button }}
+                  onClick={submitForm}
+                  disabled={isSubmitting}
+                >
+                  Создать
+                </Button>
+              </DialogActions>
+            </Form>
+          )}
+        </Formik>
       </Dialog>
     </div>
   );
 };
 
-export default withStyles(styles)(Form);
+export default withStyles(styles)(FormAdd);
