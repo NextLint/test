@@ -10,3 +10,8 @@ export const getUsers = () => async (dispatch: any) => {
   const data = await usersAPI.getUsers();
   dispatch(actions.setUsers(data));
 };
+
+export const addUser = (data: any) => async (dispatch: any) => {
+  await usersAPI.addUser(data);
+  dispatch(actions.addUser(data));
+};
