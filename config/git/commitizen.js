@@ -10,8 +10,7 @@ module.exports = {
     { value: 'config', name: 'config:     Изменение параметров конфигурации проекта' },
   ],
 
-  // TODO: Сделать область видимости для backend
-  scopes: [{ name: 'components' }, { name: 'redux' }, { name: 'theme' }],
+  scopes: [{ name: 'components' }, { name: 'redux' }, { name: 'theme' }, { name: 'backend' }],
 
   messages: {
     type: 'Какие изменения вы вносите?',
