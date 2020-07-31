@@ -20,6 +20,7 @@ interface Values {
 
 interface IFormProps extends WithStyles<typeof styles> {
   className?: string;
+  addUser: (data: any) => void;
 }
 
 const Input: React.FC<TextFieldProps> = props => {
@@ -60,8 +61,8 @@ const FormAdd: React.FC<IFormProps> = props => {
         </DialogTitle>
         <Formik
           initialValues={{
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
           }}
           validate={values => {
@@ -74,11 +75,9 @@ const FormAdd: React.FC<IFormProps> = props => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              setSubmitting(false);
-              handleFormClose();
-              alert(JSON.stringify(values, null, 2));
-            }, 500);
+            setSubmitting(false);
+            handleFormClose();
+            props.addUser(values);
           }}
         >
           {({ submitForm, isSubmitting }) => (
@@ -86,7 +85,7 @@ const FormAdd: React.FC<IFormProps> = props => {
               <DialogContent className={clsx(classes.content, className)}>
                 <Field
                   component={Input}
-                  name="firstName"
+                  name="first_name"
                   type="text"
                   label="Имя"
                   autoFocus
@@ -97,7 +96,7 @@ const FormAdd: React.FC<IFormProps> = props => {
                 />
                 <Field
                   component={Input}
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   label="Фамилия"
                   autoFocus
