@@ -3,8 +3,6 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = Router();
 
-// /api/users/add
-
 router.post(
   '/add',
   [
@@ -35,7 +33,7 @@ router.post(
 
       await user.save();
 
-      res.status(201).json({ message: 'Пользователь создан' });
+      res.status(201);
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
     }
