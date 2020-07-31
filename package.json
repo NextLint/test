@@ -8,6 +8,8 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
+    "cross-env": "^7.0.2",
     "cz-customizable": "^6.2.1",
     "husky": "^4.2.5",
     "nodemon": "^2.0.4",
