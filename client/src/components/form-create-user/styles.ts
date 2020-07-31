@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-
-export const useStyles = makeStyles(theme => ({
+export const styles = {
   root: {
     width: '520px',
   },
@@ -18,5 +16,9 @@ export const useStyles = makeStyles(theme => ({
   },
   button: {
     backgroundColor: '#00A6B4',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#008894',
+    },
   },
-}));
+};

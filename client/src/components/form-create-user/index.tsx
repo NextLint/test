@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useStyles } from './styles';
+import { styles } from './styles';
+import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,10 +8,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ButtonAdd from '../button-default';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
-const Form: React.FC = () => {
-  const classes = useStyles();
+interface IFormProps extends WithStyles<typeof styles> {
+  className?: string;
+}
+
+const Form: React.FC<IFormProps> = props => {
   const [openForm, setOpenForm] = useState(false);
+  const { classes, className } = props;
 
   const handleFormOpen = () => setOpenForm(true);
   const handleFormClose = () => setOpenForm(false);
@@ -27,10 +33,10 @@ const Form: React.FC = () => {
           paper: classes.root,
         }}
       >
-        <DialogTitle disableTypography={true} className={classes.title}>
+        <DialogTitle disableTypography={true} className={clsx(classes.title, className)}>
           Создание пользователя
         </DialogTitle>
-        <DialogContent className={classes.content}>
+        <DialogContent className={clsx(classes.content, className)}>
           <TextField
             autoFocus
             margin="normal"
@@ -62,8 +68,8 @@ const Form: React.FC = () => {
             color="secondary"
           />
         </DialogContent>
-        <DialogActions className={classes.actions}>
-          <Button fullWidth classes={{ root: classes.button }}>
+        <DialogActions className={clsx(classes.actions, className)}>
+          <Button fullWidth classes={{ root: classes.button }} onClick={handleFormClose}>
             Создать
           </Button>
         </DialogActions>
@@ -72,4 +78,4 @@ const Form: React.FC = () => {
   );
 };
 
-export default Form;
+export default withStyles(styles)(Form);
