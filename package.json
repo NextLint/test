@@ -6,7 +6,7 @@
   "main": "app.js",
   "author": "Ruslan Zolotaryov <zolotaryov.rusik@yandex.ru>",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm start --prefix client",
     "client:install": "npm install --prefix client",
@@ -33,15 +33,11 @@
     "cz-customizable": "^6.2.1",
     "husky": "^4.2.5",
     "nodemon": "^2.0.4",
-    "pino-pretty": "^4.1.0",
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "config": "^3.3.1",
     "express": "^4.17.1",
-    "express-pino-logger": "^5.0.0",
     "express-validator": "^6.6.0",
-    "mongoose": "^5.9.26",
-    "pino": "^6.4.1"
+    "mongoose": "^5.9.26"
   }
 }
