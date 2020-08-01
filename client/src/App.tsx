@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import ContentListContainer from './components/content-list';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -16,6 +16,6 @@ function App() {
       </ThemeProvider>
     </Provider>
   );
-}
+};
 
 export default App;
