@@ -94,7 +94,6 @@ const FormAdd: React.FC<IFormProps> = props => {
                   name="last_name"
                   type="text"
                   label="Фамилия"
-                  autoFocus
                   margin="normal"
                   fullWidth
                   variant="outlined"
@@ -105,7 +104,6 @@ const FormAdd: React.FC<IFormProps> = props => {
                   name="email"
                   type="email"
                   label="E-mail"
-                  autoFocus
                   margin="normal"
                   fullWidth
                   variant="outlined"
