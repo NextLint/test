@@ -1,10 +1,10 @@
-import { IUsersReducer, IUserServerType } from '../../types';
+import { IUsersReducer, IUserServerType, IUsersReducerActions } from '../../types';
 
 const initialState: IUsersReducer = {
   users: [],
 };
 
-const users = (state = initialState, action: any): IUsersReducer => {
+const users = (state = initialState, action: IUsersReducerActions): IUsersReducer => {
   switch (action.type) {
     case 'SET-USERS':
       const users = action.users.map((user: IUserServerType, index: number) => ({

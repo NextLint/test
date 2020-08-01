@@ -1,3 +1,5 @@
+// data structures
+
 export interface IUser {
   id: number;
   firstName: string;
@@ -11,9 +13,15 @@ export interface IUserServerType {
   email: string;
 }
 
+// reducers
+
 export interface IUsersReducer {
   users: Array<IUser>;
 }
+
+// actions
+
+export type IUsersReducerActions = IAddUserAction | ISetUsersAction;
 
 export enum ActionType {
   SET_USERS = 'SET-USERS',
@@ -22,16 +30,18 @@ export enum ActionType {
 
 export type IAddUserAction = {
   type: ActionType.ADD_USER;
-  user: IUser;
+  user: IUserServerType;
 };
 
 export type ISetUsersAction = {
   type: ActionType.SET_USERS;
-  users: Array<IUser>;
+  users: Array<IUserServerType>;
 };
 
-export type formValues = {
+// forms
+
+export interface formValues {
   first_name: string;
   last_name: string;
   email: string;
-};
+}
