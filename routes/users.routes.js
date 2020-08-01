@@ -2,7 +2,6 @@ const { Router } = require('express');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = Router();
-const logger = require('../app');
 
 router.post(
   '/add',
@@ -22,15 +21,7 @@ router.post(
         });
       }
 
-      logger.debug('some');
-
       const { first_name, last_name, email } = req.body;
-
-      // const candidate = await User.findOne({ email });
-
-      // if (candidate) {
-      //   res.status(400).json({ message: 'Такой пользователь уже существует' });
-      // }
 
       const user = new User({ first_name, last_name, email });
 

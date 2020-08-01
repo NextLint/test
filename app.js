@@ -1,16 +1,9 @@
 const express = require('express');
-const config = require('config');
 const path = require('path');
-const pino = require('pino');
-const expressPino = require('express-pino-logger');
+const config = require('./config');
 const mongoose = require('mongoose');
 
-module.exports = logger = pino({ level: process.env.LOG_LEVEL || 'info', prettyPrint: true });
-const expressLogger = expressPino({ logger });
-
 const app = express();
-
-app.use(expressLogger);
 
 app.use(express.json({ extended: true }));
 
@@ -26,16 +19,16 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = config.get('port') || 5000;
+const PORT = config.PORT || 5000;
 
 async function start() {
   try {
-    await mongoose.connect(config.get('mongoUri'), {
+    await mongoose.connect(config.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    app.listen(5000, () => logger.info(`App has been started on port ${PORT}!`));
+    app.listen(PORT, () => console.log(`App has been started on port ${PORT}!`));
   } catch (e) {
     console.log('Server error', e.message);
     process.exit(1);
