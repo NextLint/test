@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = Router();
+const logger = require('../app');
 
 router.post(
   '/add',
@@ -20,6 +21,8 @@ router.post(
           message: 'Данные введены некорректно',
         });
       }
+
+      logger.debug('some');
 
       const { first_name, last_name, email } = req.body;
 
