@@ -9,7 +9,6 @@ export const actions = {
 
 export const getUsers = () => async (dispatch: Dispatch<ISetUsersAction>) => {
   const users = await usersAPI.getUsers();
-  console.log(users);
   dispatch(actions.setUsers(users));
 };
 

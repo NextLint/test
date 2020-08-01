@@ -14,6 +14,8 @@ interface IUserCardProps {
 const UserCard: React.FC<IUserCardProps> = props => {
   const classes = useStyles();
 
+  const letters = props.firstName[0] + props.lastName[0];
+
   return (
     <Card className={classes.root}>
       <div className={classes.number}>#{props.id}</div>
@@ -21,7 +23,7 @@ const UserCard: React.FC<IUserCardProps> = props => {
         className={classes.header}
         avatar={
           <Avatar aria-label="name" className={classes.avatar}>
-            РЗ
+            {letters.toUpperCase()}
           </Avatar>
         }
         title={`${props.firstName} ${props.lastName}`}
