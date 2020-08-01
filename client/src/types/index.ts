@@ -14,3 +14,24 @@ export interface IUserServerType {
 export interface IUsersReducer {
   users: Array<IUser>;
 }
+
+export enum ActionType {
+  SET_USERS = 'SET-USERS',
+  ADD_USER = 'ADD-USER',
+}
+
+export type IAddUserAction = {
+  type: ActionType.ADD_USER;
+  user: IUser;
+};
+
+export type ISetUsersAction = {
+  type: ActionType.SET_USERS;
+  users: Array<IUser>;
+};
+
+export interface formValues {
+  first_name: string;
+  last_name: string;
+  email: string;
+}

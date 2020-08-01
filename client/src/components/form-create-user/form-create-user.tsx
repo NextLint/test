@@ -11,16 +11,11 @@ import ButtonAdd from '../button-default';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field } from 'formik';
 import { fieldToTextField, TextFieldProps } from 'formik-material-ui';
-
-interface Values {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { formValues, IUser } from '../../types';
 
 interface IFormProps extends WithStyles<typeof styles> {
   className?: string;
-  addUser: (data: any) => void;
+  addUser: (user: IUser) => void;
 }
 
 const Input: React.FC<TextFieldProps> = props => {
@@ -65,8 +60,8 @@ const FormAdd: React.FC<IFormProps> = props => {
             last_name: '',
             email: '',
           }}
-          validate={values => {
-            const errors: Partial<Values> = {};
+          validate={(values: formValues) => {
+            const errors: Partial<formValues> = {};
             if (!values.email) {
               errors.email = 'Required';
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
