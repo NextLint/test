@@ -11,11 +11,11 @@ import ButtonAdd from '../button-default';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field } from 'formik';
 import { fieldToTextField, TextFieldProps } from 'formik-material-ui';
-import { formValues, IUser } from '../../types';
+import { formValues } from '../../types';
 
 interface IFormProps extends WithStyles<typeof styles> {
   className?: string;
-  addUser: (user: IUser) => void;
+  addUser: (user: formValues) => void;
 }
 
 const Input: React.FC<TextFieldProps> = props => {

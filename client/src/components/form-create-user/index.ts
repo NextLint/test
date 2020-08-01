@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { addUser } from '../../redux/actions';
 import Form from './form-create-user';
-import { IUserServerType } from '../../types';
+import { formValues } from '../../types';
 
 const mapDispatchToProps = (dispatch: any) => ({
-  addUser: (user: IUserServerType) => dispatch(addUser(user)),
+  addUser: (user: formValues) => dispatch(addUser(user)),
 });
 
 const FormContainer = connect(null, mapDispatchToProps)(Form);

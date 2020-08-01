@@ -30,8 +30,8 @@ export type ISetUsersAction = {
   users: Array<IUser>;
 };
 
-export interface formValues {
+export type formValues = {
   first_name: string;
   last_name: string;
   email: string;
-}
+};
