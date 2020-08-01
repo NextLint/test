@@ -18,8 +18,8 @@ const ContentList: React.FC<IContentListProps> = props => {
     <UserCard
       key={user.id}
       id={user.id}
-      first_name={user.first_name}
-      last_name={user.last_name}
+      firstName={user.firstName}
+      lastName={user.lastName}
       email={user.email}
     />
   ));

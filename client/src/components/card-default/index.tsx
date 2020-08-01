@@ -6,8 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 
 interface IUserCardProps {
   id: number;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
 }
 
@@ -24,7 +24,7 @@ const UserCard: React.FC<IUserCardProps> = props => {
             РЗ
           </Avatar>
         }
-        title={`${props.first_name} ${props.last_name}`}
+        title={`${props.firstName} ${props.lastName}`}
         subheader={props.email}
         classes={{
           subheader: classes.subheader,
