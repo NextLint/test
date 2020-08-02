@@ -27,7 +27,7 @@ router.post(
 
       await user.save();
 
-      res.status(201);
+      res.status(201).end();
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
     }
