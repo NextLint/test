@@ -1,4 +1,4 @@
-import { ISetUsersAction, IAddUserAction, IUserServerType } from '../../types';
+import { ISetUsersAction, IAddUserAction, IUserServerType, formValues } from '../../types';
 import { usersAPI } from '../../api/api';
 import { Dispatch } from 'redux';
 
@@ -12,9 +12,9 @@ export const getUsers = () => async (dispatch: Dispatch<ISetUsersAction>) => {
   dispatch(actions.setUsers(users));
 };
 
-export const addUser = (data: IUserServerType) => async (dispatch: Dispatch<IAddUserAction>) => {
+export const addUser = (data: formValues) => async (dispatch: Dispatch<IAddUserAction>) => {
   const responce = await usersAPI.addUser(data);
-  if (responce.status == 201) {
-    dispatch(actions.addUser(data));
+  if (responce.status === 201) {
+    dispatch(actions.addUser(responce.data));
   }
 };
