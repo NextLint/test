@@ -1,4 +1,6 @@
-export const styles = {
+import { makeStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles({
   root: {
     width: '520px',
   },
@@ -15,10 +17,10 @@ export const styles = {
     padding: '35px',
   },
   button: {
-    backgroundColor: '#00A6B4',
-    color: 'white',
+    backgroundColor: '#00A6B4 !important',
+    color: 'white !important',
     '&:hover': {
-      backgroundColor: '#008894',
+      backgroundColor: '#008894 !important',
     },
   },
-};
+});

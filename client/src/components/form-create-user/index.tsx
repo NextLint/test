@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { styles } from './styles';
-import clsx from 'clsx';
+import { useStyles } from './styles';
 import Button from '@material-ui/core/Button';
 import MuiTextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,16 +7,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ButtonAdd from '../button-default';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field } from 'formik';
 import { fieldToTextField, TextFieldProps } from 'formik-material-ui';
 import { formValues } from '../../types';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../redux/actions';
-
-interface IFormProps extends WithStyles<typeof styles> {
-  className?: string;
-}
 
 const Input: React.FC<TextFieldProps> = props => {
   const {
@@ -34,9 +28,9 @@ const Input: React.FC<TextFieldProps> = props => {
   return <MuiTextField {...fieldToTextField(props)} onChange={onChange} />;
 };
 
-const FormAdd: React.FC<IFormProps> = props => {
+const FormAdd: React.FC = props => {
   const [openForm, setOpenForm] = useState(false);
-  const { classes, className } = props;
+  const classes = useStyles();
 
   const handleFormOpen = () => setOpenForm(true);
   const handleFormClose = () => setOpenForm(false);
@@ -53,7 +47,7 @@ const FormAdd: React.FC<IFormProps> = props => {
           paper: classes.root,
         }}
       >
-        <DialogTitle disableTypography={true} className={clsx(classes.title, className)}>
+        <DialogTitle disableTypography={true} className={classes.title}>
           Создание пользователя
         </DialogTitle>
         <Formik
@@ -79,7 +73,7 @@ const FormAdd: React.FC<IFormProps> = props => {
         >
           {({ submitForm, isSubmitting }) => (
             <Form>
-              <DialogContent className={clsx(classes.content, className)}>
+              <DialogContent className={classes.content}>
                 <Field
                   component={Input}
                   name="first_name"
@@ -115,7 +109,7 @@ const FormAdd: React.FC<IFormProps> = props => {
               <DialogActions classes={{ root: classes.actions }}>
                 <Button
                   fullWidth
-                  classes={{ root: classes.button }}
+                  className={classes.button}
                   onClick={submitForm}
                   disabled={isSubmitting}
                 >
@@ -130,4 +124,4 @@ const FormAdd: React.FC<IFormProps> = props => {
   );
 };
 
-export default withStyles(styles)(FormAdd);
+export default FormAdd;
