@@ -35,6 +35,61 @@ const FormAdd: React.FC = props => {
   const handleFormOpen = () => setOpenForm(true);
   const handleFormClose = () => setOpenForm(false);
   const dispatch = useDispatch();
+  const validate = () => (values: formValues) => {
+    const errors: Partial<formValues> = {};
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address';
+    }
+    return errors;
+  };
+  const handleSubmitting = (values: formValues) => {
+    handleFormClose();
+    dispatch(addUser(values));
+  };
+  const renderForm = ({ submitForm, isSubmitting }: any) => (
+    <Form>
+      <DialogContent className={classes.content}>
+        <Field
+          component={Input}
+          name="first_name"
+          type="text"
+          label="Имя"
+          autoFocus
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          color="secondary"
+        />
+        <Field
+          component={Input}
+          name="last_name"
+          type="text"
+          label="Фамилия"
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          color="secondary"
+        />
+        <Field
+          component={Input}
+          name="email"
+          type="email"
+          label="E-mail"
+          margin="normal"
+          fullWidth
+          variant="outlined"
+          color="secondary"
+        />
+      </DialogContent>
+      <DialogActions classes={{ root: classes.actions }}>
+        <Button fullWidth className={classes.button} onClick={submitForm} disabled={isSubmitting}>
+          Создать
+        </Button>
+      </DialogActions>
+    </Form>
+  );
 
   return (
     <div>
@@ -56,68 +111,10 @@ const FormAdd: React.FC = props => {
             last_name: '',
             email: '',
           }}
-          validate={(values: formValues) => {
-            const errors: Partial<formValues> = {};
-            if (!values.email) {
-              errors.email = 'Required';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-              errors.email = 'Invalid email address';
-            }
-            return errors;
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(false);
-            handleFormClose();
-            dispatch(addUser(values));
-          }}
+          validate={validate}
+          onSubmit={handleSubmitting}
         >
-          {({ submitForm, isSubmitting }) => (
-            <Form>
-              <DialogContent className={classes.content}>
-                <Field
-                  component={Input}
-                  name="first_name"
-                  type="text"
-                  label="Имя"
-                  autoFocus
-                  margin="normal"
-                  fullWidth
-                  variant="outlined"
-                  color="secondary"
-                />
-                <Field
-                  component={Input}
-                  name="last_name"
-                  type="text"
-                  label="Фамилия"
-                  margin="normal"
-                  fullWidth
-                  variant="outlined"
-                  color="secondary"
-                />
-                <Field
-                  component={Input}
-                  name="email"
-                  type="email"
-                  label="E-mail"
-                  margin="normal"
-                  fullWidth
-                  variant="outlined"
-                  color="secondary"
-                />
-              </DialogContent>
-              <DialogActions classes={{ root: classes.actions }}>
-                <Button
-                  fullWidth
-                  className={classes.button}
-                  onClick={submitForm}
-                  disabled={isSubmitting}
-                >
-                  Создать
-                </Button>
-              </DialogActions>
-            </Form>
-          )}
+          {renderForm}
         </Formik>
       </Dialog>
     </div>
