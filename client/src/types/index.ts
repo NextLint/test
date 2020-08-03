@@ -1,13 +1,15 @@
 // data structures
 
 export interface IUser {
-  id: number;
+  id: string;
+  num: number;
   firstName: string;
   lastName: string;
   email: string;
 }
 
 export interface IUserServerType {
+  _id: string;
   first_name: string;
   last_name: string;
   email: string;
