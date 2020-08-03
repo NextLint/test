@@ -12,10 +12,11 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field } from 'formik';
 import { fieldToTextField, TextFieldProps } from 'formik-material-ui';
 import { formValues } from '../../types';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../redux/actions';
 
 interface IFormProps extends WithStyles<typeof styles> {
   className?: string;
-  addUser: (user: formValues) => void;
 }
 
 const Input: React.FC<TextFieldProps> = props => {
@@ -39,6 +40,7 @@ const FormAdd: React.FC<IFormProps> = props => {
 
   const handleFormOpen = () => setOpenForm(true);
   const handleFormClose = () => setOpenForm(false);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -72,7 +74,7 @@ const FormAdd: React.FC<IFormProps> = props => {
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(false);
             handleFormClose();
-            props.addUser(values);
+            dispatch(addUser(values));
           }}
         >
           {({ submitForm, isSubmitting }) => (

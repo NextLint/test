@@ -1,15 +1,35 @@
-import { connect } from 'react-redux';
-import ContentList from './content-list';
+import React, { useEffect } from 'react';
+import styles from './styles.module.css';
+import { IUser } from '../../types';
+import UserCard from '../card-default';
+import Form from '../form-create-user';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../redux/actions';
 
-const mapStateToProps = (state: any) => ({
-  users: state.users.users,
-});
+const ContentList: React.FC = props => {
+  const usersArray: Array<IUser> = useSelector((state: any) => state.users.users);
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch: any) => ({
-  getUsers: () => dispatch(getUsers()),
-});
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
-const ContentListContainer = connect(mapStateToProps, mapDispatchToProps)(ContentList);
+  const users = usersArray.map(user => (
+    <UserCard
+      key={user.id}
+      num={user.num}
+      firstName={user.firstName}
+      lastName={user.lastName}
+      email={user.email}
+    />
+  ));
 
-export default ContentListContainer;
+  return (
+    <div className={styles.content}>
+      {users}
+      <Form />
+    </div>
+  );
+};
+
+export default ContentList;
