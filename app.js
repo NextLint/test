@@ -1,13 +1,15 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json({ extended: true }));
 
-let userRoutes = require('./routes/users.routes');
+const userRoutes = require('./routes/users.routes');
 
 app.use('/api/users', userRoutes);
 
@@ -21,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = config.PORT || 5000;
 
-async function start() {
+async function startServer() {
   try {
     await mongoose.connect(config.MONGO_URI, {
       useNewUrlParser: true,
@@ -35,4 +37,4 @@ async function start() {
   }
 }
 
-start();
+startServer();
