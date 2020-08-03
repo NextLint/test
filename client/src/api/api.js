@@ -9,9 +9,6 @@ export const usersAPI = {
     return instance.get('users/').then(res => res.data);
   },
   addUser(data) {
-    return instance
-      .post('users/add', data)
-      .then(res => console.log(res.data))
-      .catch(error => console.log(error));
+    return instance.post('users/add', data);
   },
 };

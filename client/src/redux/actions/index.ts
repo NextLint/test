@@ -13,6 +13,8 @@ export const getUsers = () => async (dispatch: Dispatch<ISetUsersAction>) => {
 };
 
 export const addUser = (data: IUserServerType) => async (dispatch: Dispatch<IAddUserAction>) => {
-  await usersAPI.addUser(data);
-  dispatch(actions.addUser(data));
+  const responce = await usersAPI.addUser(data);
+  if (responce.status == 201) {
+    dispatch(actions.addUser(data));
+  }
 };
