@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 
 interface IUserCardProps {
-  id: number;
+  num: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -18,7 +18,7 @@ const UserCard: React.FC<IUserCardProps> = props => {
 
   return (
     <Card className={classes.root}>
-      <div className={classes.number}>#{props.id}</div>
+      <div className={classes.number}>#{props.num}</div>
       <CardHeader
         className={classes.header}
         avatar={
