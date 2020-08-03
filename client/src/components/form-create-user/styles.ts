@@ -20,7 +20,7 @@ export const useStyles = makeStyles({
     backgroundColor: '#00A6B4 !important',
     color: 'white !important',
     '&:hover': {
-      backgroundColor: '#008894 !important',
+      backgroundColor: '#008894',
     },
   },
 });
