@@ -8,8 +8,10 @@ export const actions = {
 };
 
 export const getUsers = () => async (dispatch: Dispatch<ISetUsersAction>) => {
-  const users = await usersAPI.getUsers();
-  dispatch(actions.setUsers(users));
+  const responce = await usersAPI.getUsers();
+  if (responce.status === 200) {
+    dispatch(actions.setUsers(responce.data));
+  }
 };
 
 export const addUser = (data: formValues) => async (dispatch: Dispatch<IAddUserAction>) => {
